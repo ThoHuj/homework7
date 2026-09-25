@@ -156,7 +156,7 @@ kubectl apply -f k8s/
 kubectl get pods,svc
 ```
 
-Open http://localhost:30080 (NodePort). Tear down:
+Open http://localhost:8000 (LoadBalancer — Docker Desktop maps this to localhost). Tear down:
 
 ```bash
 kubectl delete -f k8s/
