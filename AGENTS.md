@@ -60,6 +60,12 @@ Not in v1: model name display, mobile polish, auth, persistent storage.
 │   ├── style.css
 │   └── app.js
 ├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── k8s/
+│   ├── deployment.yaml
+│   └── service.yaml
+├── .env.example
 └── docs/
 ```
 
@@ -121,10 +127,45 @@ uvicorn chat_bot.main:app --app-dir src --reload --port 8000
 
 Open http://localhost:8000
 
+## Docker
+
+Build and run with plain Docker:
+
+```bash
+docker build -t chat-bot .
+docker run --rm -p 8000:8000 --env-file .env chat-bot
+```
+
+Or with Docker Compose:
+
+```bash
+docker compose up --build
+docker compose down
+```
+
+Use `docker compose` (with a space), not `docker-compose`.
+
+## Kubernetes
+
+Enable Kubernetes in Docker Desktop (Settings → Kubernetes → Enable), then:
+
+```bash
+docker build -t chat-bot .
+kubectl create secret generic chat-bot-secrets --from-env-file=.env
+kubectl apply -f k8s/
+kubectl get pods,svc
+```
+
+Open http://localhost:30080 (NodePort). Tear down:
+
+```bash
+kubectl delete -f k8s/
+kubectl delete secret chat-bot-secrets
+```
+
 ## Out of scope (v1)
 
 - User authentication
 - Database / persistent chat history
 - Automated tests
 - Mobile-specific UI
-- Docker / Compose / Kubernetes setup (separate concern; app must be container-friendly)
