@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chat-bot</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-left">
+        <span class="prompt">$</span>
+        <h1>chat-bot</h1>
+        <span class="status-dot" title="Ready"></span>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="new-chat-btn" class="btn btn-secondary">new chat</button>
+        <button type="button" id="stop-btn" class="btn btn-danger" disabled>stop</button>
+      </div>
+    </header>
+
+    <main id="chat-log" class="chat-log" aria-live="polite" aria-label="Chat messages">
+      <div class="welcome">
+        <p><span class="prompt">&gt;</span> session initialized — ask anything.</p>
+      </div>
+    </main>
+
+    <form id="chat-form" class="input-bar">
+      <span class="prompt">&gt;</span>
+      <input
+        type="text"
+        id="message-input"
+        class="message-input"
+        placeholder="type your message..."
+        autocomplete="off"
+        required
+      >
+      <button type="submit" id="send-btn" class="btn btn-primary">send</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
